@@ -25,7 +25,8 @@ class product{
     double deposit
     double dailyPrice
     double discountDailyPrice
-    int inventory
+    int currentInventory
+    int totalInventory
     String introduce
     String parameter #json格式字符串,产品参数
     String picUrl
