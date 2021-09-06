@@ -1,27 +1,62 @@
 @startuml
 
+class user{
+    int id
+    string username
+    string password
+    date registryDate
+}
+class manager{
+    int id
+    string username
+    string password
+}
+class category{
+    int id
+    String name
+    String introduce
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class product{
+    int id
+    int categoryId
+    String name
+    double deposit
+    double dailyPrice
+    double discountDailyPrice
+    int inventory
+    String introduce
+    String parameter #json格式字符串,产品参数
+    String picUrl
 }
+class order{
+    int id
+    int userId
+    int orderRecordId
+    date orderTime
+    double orderTotalPrice
+}
+
+class orderRecord{
+    int id
+    int productId
+
+    int quantity
+    date beginTime
+    date endTime
+
+    double totalPrice
+
+}
+
+
+
+
+category<|-product
+orderRecord<|-order
+orderRecord --|>product
+order --|>user
+
 
 @enduml
