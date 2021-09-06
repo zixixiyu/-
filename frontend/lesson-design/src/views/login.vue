@@ -4,17 +4,41 @@
     <h1>LOGIN</h1>
     <div class="inputBox" >
       <div class="inputText">
-        <span class="iconfont icon-nickname"></span>
-        <input type="text" placeholder="Username" />
+        <span class=""></span>
+        <input type="text" placeholder="Username" v-model = loginInfo.username />
       </div>
       <div class="inputText">
-        <span class="iconfont icon-visible"></span>
-        <input type="password" placeholder="Password" />
+        <span class=""></span>
+        <input type="password" placeholder="Password" v-model = loginInfo.password />
       </div>
     </div>
-    <input class="loginButton" type="button" value="Login" />
+    <input class="loginButton" type="button" value="Login" @click = "loginTheWeb()"/>
     <input class="loginButton" type="button" value="cancel" />
+    <input class="loginButton" type="button" value="registry" @click="registryModal = true" />
   </div>
+
+    <Modal
+            v-model="registryModal"
+            title="注册"
+            @on-ok="registryTheUser()">
+
+      <div class="inputBox" >
+        <div class="inputText">
+          <span class="">用户名：</span>
+          <Input type="text" placeholder="Username" v-model = registryInfo.username />
+        </div>
+        <div class="inputText">
+          <span class="">密码：</span>
+          <Input type="password" placeholder="Password" v-model = registryInfo.password />
+        </div>
+        <div class="inputText">
+          <span class="">确认密码：</span>
+          <Input type="password" placeholder="Verify Password" v-model = registryInfo.verifyPassword />
+        </div>
+      </div>
+
+    </Modal>
+
   </div>
 </template>
 
@@ -28,6 +52,12 @@
         loginInfo:{
             username:'',
             password:''
+        },
+        registryModal:false,
+        registryInfo:{
+          username: '',
+          password: '',
+          verifyPassword:''
         }
       }
     },
@@ -35,7 +65,12 @@
 
     },
     methods:{
+      loginTheWeb(){
 
+      },
+      registryTheUser(){
+
+      }
     }
   }
 </script>
@@ -96,7 +131,7 @@
   #bigBox .loginButton
   {
     margin-top: 30px;	/* 按钮顶部与输入框的距离 */
-    width: 100px;
+    width: 80px;
     height: 25px;
     color: white;	/* 按钮字体颜色 */
     border: 0; /* 删除按钮边框 */
