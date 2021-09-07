@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @RequestMapping("/getuser")
+    @RequestMapping("/getUser")
     @ResponseBody
     public CommonResult<User> get(){
 
