@@ -5,6 +5,9 @@ class user{
     string username
     string password
     date registryDate
+    String email
+    String mobile
+
 }
 class manager{
     int id
@@ -22,7 +25,7 @@ class product{
     int id
     int categoryId
     String name
-    double deposit
+    double deposit #租金
     double dailyPrice
     double discountDailyPrice
     int currentInventory
@@ -34,20 +37,24 @@ class product{
 class order{
     int id
     int userId
-    int orderRecordId
+
     date orderTime
     double orderTotalPrice
+
+    byte states  # 0表示为购物车，1表示已经支付
 }
 
-class orderRecord{
+class orderItem{
     int id
     int productId
-
+    int orderId
     int quantity
     date beginTime
     date endTime
 
     double totalPrice
+
+
 
 }
 
@@ -55,8 +62,8 @@ class orderRecord{
 
 
 category<|-product
-orderRecord<|-order
-orderRecord --|>product
+orderItem<|-order
+orderItem --|>product
 order --|>user
 
 
