@@ -1,8 +1,13 @@
 package com.group.lesson.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,11 +16,14 @@ import java.util.Date;
  * 4
  */
 @TableName(value = "user")
-public class User {
-    private int id;
+public class User implements Serializable {
+    @TableId(value = "id",type = IdType.AUTO)
+    private Integer id;
     private String username;
     private String password;
+
     @TableField(value = "registryDate")
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registryDate;
     private String email;
     private String mobile;
@@ -25,6 +33,18 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", registryDate=" + registryDate +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
     }
 
     public void setEmail(String email) {
