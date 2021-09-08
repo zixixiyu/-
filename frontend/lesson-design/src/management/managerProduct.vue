@@ -1,6 +1,7 @@
 <template>
     <div>
-        pro
+        <Divider>产品管理</Divider>
+
     </div>
 </template>
 
