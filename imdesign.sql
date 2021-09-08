@@ -67,11 +67,12 @@ CREATE TABLE `order`  (
 -- ----------------------------
 -- Table structure for orderrecord
 -- ----------------------------
-DROP TABLE IF EXISTS `orderrecord`;
+DROP TABLE IF EXISTS `orderItem`;
 CREATE TABLE `orderItem`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `productId` int(0) NULL DEFAULT NULL,
   `orderId` int(10) NOT NULL,
+  `price` double NOT NULL,
   `quantity` int(0) NULL DEFAULT NULL,
   `beginTime` datetime(0) NULL DEFAULT NULL,
   `endTime` datetime(0) NULL DEFAULT NULL,

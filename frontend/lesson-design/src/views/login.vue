@@ -1,20 +1,20 @@
 <template>
   <div class="login">
-  <div id="bigBox">
-    <h1>LOGIN</h1>
-    <div class="inputBox" >
-      <div class="inputText">
-        <span class=""></span>
-        <input type="text" placeholder="Username" v-model = loginInfo.username />
+    <div id="bigBox">
+      <h1>LOGIN</h1>
+      <div class="inputBox" >
+        <div class="inputText">
+          <span class=""></span>
+          <input type="text" placeholder="Username" v-model = loginInfo.username />
+        </div>
+        <div class="inputText">
+          <span class=""></span>
+          <input type="password" placeholder="Password" v-model = loginInfo.password />
+        </div>
       </div>
-      <div class="inputText">
-        <span class=""></span>
-        <input type="password" placeholder="Password" v-model = loginInfo.password />
-      </div>
-    </div>
-    <input class="loginButton" type="button" value="Login" @click = "loginTheWeb()"/>
-    <input class="loginButton" type="button" value="cancel" />
-    <input class="loginButton" type="button" value="registry" @click="registryModal = true" />
+      <input class="loginButton" type="button" value="Login" @click = "loginTheWeb()"/>
+      <input class="loginButton" type="button" value="cancel" />
+      <input class="loginButton" type="button" value="registry" @click="registryModal = true" />
   </div>
 
     <Modal
