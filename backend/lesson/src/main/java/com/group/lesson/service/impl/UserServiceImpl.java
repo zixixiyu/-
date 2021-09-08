@@ -43,4 +43,22 @@ public class UserServiceImpl implements UserService {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         return userMapper.selectCount(userQueryWrapper);
     }
+
+    @Override
+    public Boolean distinctUsername(String username) {
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.eq("username",username);
+        List<User> users = userMapper.selectList(userQueryWrapper);
+        if (users.isEmpty()){
+            return Boolean.TRUE;
+        }else {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
+    public Boolean registry(User user) {
+        int insert = userMapper.insert(user);
+        return insert==1?Boolean.TRUE:Boolean.FALSE;
+    }
 }

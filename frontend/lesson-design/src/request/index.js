@@ -14,7 +14,7 @@ function errorLog (err) {
     // 打印到控制台
     if (process.env.NODE_ENV === 'development') {
         console.log(err);
-        Message.error(err)
+        Message.error(err.message)
     }
 
 }

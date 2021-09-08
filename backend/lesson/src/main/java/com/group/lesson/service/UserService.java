@@ -23,4 +23,18 @@ public interface UserService {
      * @return
      */
     Integer getUserNum();
+
+    /**
+     * 查看该用户名是否已经存在了
+     * @param username
+     * @return
+     */
+    Boolean distinctUsername(String username);
+
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
+    Boolean registry(User user);
 }

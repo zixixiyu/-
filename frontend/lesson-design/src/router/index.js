@@ -28,7 +28,7 @@ const routes = [
     path: "/managerHome",
     name: "managerHome",
     component: () => import("../management/managerHome"),
-    //redirect: '/managerHome',//页面默认加载的路由
+    redirect: '/managerHome/managerUser',//页面默认加载的路由
     children: [
       {
         path: "managerUser",

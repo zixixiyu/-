@@ -25,15 +25,25 @@
       <div class="inputBox" >
         <div class="inputText">
           <span class="">用户名：</span>
-          <Input type="text" placeholder="Username" v-model = registryInfo.username />
+          <Input type="text" @on-blur="sameUsername()" placeholder="Username" v-model = registryInfo.username />
+          <span :style="usernameMessageClass">{{usernameMessage}}</span>
         </div>
         <div class="inputText">
           <span class="">密码：</span>
           <Input type="password" placeholder="Password" v-model = registryInfo.password />
         </div>
         <div class="inputText">
-          <span class="">确认密码：</span>
-          <Input type="password" placeholder="Verify Password" v-model = registryInfo.verifyPassword />
+          <span class="" >确认密码：</span>
+          <Input type="password" @on-blur="samePassword()" placeholder="Verify Password" v-model = registryInfo.verifyPassword />
+          <span :style="passwordMessageClass">{{passwordMessage}}</span>
+        </div>
+        <div class="inputText">
+          <span class="">邮箱：</span>
+          <Input type="text" placeholder="Email" v-model = registryInfo.email />
+        </div>
+        <div class="inputText">
+          <span class="">手机号：</span>
+          <Input type="text" placeholder="Mobile" v-model = registryInfo.mobile />
         </div>
       </div>
 
@@ -43,7 +53,7 @@
 </template>
 
 <script>
-
+  import {distinctUsername,registry} from '../request/userModule/UserOperate';
 
   export default {
     name: 'Login',
@@ -57,8 +67,14 @@
         registryInfo:{
           username: '',
           password: '',
-          verifyPassword:''
-        }
+          verifyPassword:'',
+          email:'',
+          mobile:''
+        },
+        usernameMessage:'',
+        usernameMessageClass:'',
+        passwordMessage:'',
+        passwordMessageClass:''
       }
     },
     components: {
@@ -69,6 +85,47 @@
 
       },
       registryTheUser(){
+          if (this.registryInfo.password!==this.registryInfo.verifyPassword){
+            this.$Message.error("两次密码不一致")
+            return
+          }
+
+          let mobileRegex = /^(13[0-9]{9})|(15[0-9]{9})|(17[0-9]{9})|(18[0-9]{9})|(19[0-9]{9})$/;
+          if (!mobileRegex.test(this.registryInfo.mobile)){
+            this.$Message.error("手机号格式不正确")
+            return
+          }
+          let emailRegex = /^[a-z0-9](\w|\.|-)*@([a-z0-9]+-?[a-z0-9]+\.){1,3}[a-z]{2,4}$/i;
+          if (!emailRegex.test(this.registryInfo.email)){
+            this.$Message.error("邮箱格式不正确")
+            return;
+          }
+          registry(this.registryInfo.username,this.registryInfo.password,this.registryInfo.email,this.registryInfo.mobile).then(res=>{
+              if (res){
+                this.$Message.info("注册成功")
+              }
+              this.registryInfo = {}
+
+          })
+      },
+      samePassword(){
+        if (this.registryInfo.password!==this.registryInfo.verifyPassword){
+          this.passwordMessage = "两次密码不一致"
+          this.passwordMessageClass={color:'red'}
+        }
+      },
+      sameUsername(){
+        this.usernameMessage=''
+        distinctUsername(this.registryInfo.username).then(res=>{
+          if (res===false){
+            this.usernameMessageClass={color:'red'}
+            this.usernameMessage='该用户已经存在，请更换其他用户名'
+          }else {
+            this.usernameMessageClass={color:'green'}
+            this.usernameMessage='该用户名可用'
+          }
+
+        })
 
       }
     }
