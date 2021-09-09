@@ -123,9 +123,9 @@ public class UserController {
         String token = httpServletRequest.getHeader("u-token");
         if (token!=null){
             Boolean delete = redisTemplate.delete(token);
-            return delete?CommonResult.success(Boolean.TRUE):CommonResult.fail(Boolean.FALSE,"登出失败");
+            return CommonResult.success(Boolean.TRUE);
         }
-        return CommonResult.fail(Boolean.FALSE,"无需登出");
+        return CommonResult.success(Boolean.TRUE);
     }
 
 }

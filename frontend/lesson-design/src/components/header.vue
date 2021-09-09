@@ -34,6 +34,7 @@
                 }
             },
             logOut(){
+
                 logout().then(res=>{
                     if (res){
                         localStorage.removeItem("uToken");
