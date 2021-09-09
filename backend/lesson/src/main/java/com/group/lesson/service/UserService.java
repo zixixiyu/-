@@ -37,4 +37,12 @@ public interface UserService {
      * @return
      */
     Boolean registry(User user);
+
+    /**
+     * 用户登录
+     * @param username
+     * @param password
+     * @return
+     */
+    String login(String username,String password);
 }

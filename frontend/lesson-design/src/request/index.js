@@ -30,7 +30,11 @@ service.interceptors.request.use(
     config => {
         config.withCredentials = true; // 开启跨域能力 是否携带cookie
         // 在请求发送之前做一些处理
-
+        let uToken =  localStorage.getItem("uToken");
+        if(uToken){
+            //1.2 注意：给请求头里面添加u-token（后台判断就是取的这个请求头）请求头，并把随机数的token值也设置进去
+            config.headers['u-token']=uToken;
+        }
         // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
 
         return config;
@@ -58,9 +62,11 @@ service.interceptors.response.use(
             switch (code) {
                 case 200:
                     return dataAxios.data;
-                case 'xxx':
+                case 499:
                     // [ 示例 ] 其它和后台约定的 code
-                    errorCreate(`[ code: xxx ] ${dataAxios.message}: ${response.config.url}`);
+
+                    Message.error("尚未登录系统，无法完成对应功能");
+
                     break;
                 default:
                     // 不是正确的 code

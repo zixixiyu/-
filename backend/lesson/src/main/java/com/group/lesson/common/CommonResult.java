@@ -1,5 +1,7 @@
 package com.group.lesson.common;
 
+import java.awt.*;
+
 /**
  * 2 * @Author: hwj
  * 3 * @Date: 2021/9/6 19:12
@@ -27,6 +29,13 @@ public class CommonResult<T> {
         common.setData(data);
         return common;
 
+    }
+    public static  CommonResult<String> failToLogin(){
+        CommonResult<String> common = new CommonResult<>();
+        common.setMessage("登录失败");
+        common.setCode(499);
+        common.setData("");
+        return common;
     }
     public Integer getCode() {
         return code;

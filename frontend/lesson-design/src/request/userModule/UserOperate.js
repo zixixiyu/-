@@ -29,3 +29,16 @@ export function registry(username,password,email,mobile) {
         data:{username,password,email,mobile}
     })
 }
+export function login(username,password) {
+    return service.request({
+        url:'/v1/user/login',
+        method:"post",
+        data:{username,password}
+    })
+}
+export function logout() {
+    return service.request({
+        url:'/v1/user/logout',
+        method:"post"
+    })
+}

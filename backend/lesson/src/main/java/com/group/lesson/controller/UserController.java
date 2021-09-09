@@ -9,10 +9,12 @@ import com.group.lesson.mapper.UserMapper;
 import com.group.lesson.service.UserService;
 import com.group.lesson.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,8 +30,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
     @RequestMapping(value = "/getAllUser",method = RequestMethod.GET)
     public CommonResult<List<UserVo>> get(
             @RequestParam("pageNum") int pageNum
@@ -94,6 +98,34 @@ public class UserController {
         }else {
             return CommonResult.fail(Boolean.FALSE,"注册失败");
         }
+    }
+    @RequestMapping("/login")
+    public CommonResult<String> login(
+            @RequestBody String jsonString
+    ){
+        JSONObject jsonObject = JSON.parseObject(jsonString);
+        String username = jsonObject.getString("username");
+        String password = jsonObject.getString("password");
+        if (!StringUtils.hasText(username)||!StringUtils.hasText(username)){
+            return CommonResult.fail("账号密码不可以为空","账号密码不可以为空");
+        }
+        String token = userService.login(username,password);
+
+        if (token == null){
+            return CommonResult.fail("账号密码不正确","账号密码不正确");
+        }
+        return CommonResult.success(token);
+
+
+    }
+    @RequestMapping("/logout")
+    public CommonResult<Boolean> logout(){
+        String token = httpServletRequest.getHeader("u-token");
+        if (token!=null){
+            Boolean delete = redisTemplate.delete(token);
+            return delete?CommonResult.success(Boolean.TRUE):CommonResult.fail(Boolean.FALSE,"登出失败");
+        }
+        return CommonResult.fail(Boolean.FALSE,"无需登出");
     }
 
 }

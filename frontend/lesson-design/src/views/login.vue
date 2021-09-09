@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import {distinctUsername,registry} from '../request/userModule/UserOperate';
+  import {distinctUsername,registry,login} from '../request/userModule/UserOperate';
 
   export default {
     name: 'Login',
@@ -82,6 +82,17 @@
     },
     methods:{
       loginTheWeb(){
+
+          if (this.loginInfo.username.trim()===null||this.loginInfo.password.trim()===null){
+            this.$Message.info("用户名或密码不能为空");
+          }
+          login(this.loginInfo.username,this.loginInfo.password).then(res=>{
+              localStorage.setItem("uToken",res);
+              this.$router.push('/')
+          }).catch(err=>{
+              //账号密码不正确
+            this.$router.go(0);
+          })
 
       },
       registryTheUser(){

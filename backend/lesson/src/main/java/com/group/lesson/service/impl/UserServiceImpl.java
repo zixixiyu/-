@@ -6,10 +6,13 @@ import com.group.lesson.mapper.UserMapper;
 import com.group.lesson.service.UserService;
 import com.group.lesson.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author: hwj
@@ -20,6 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
+    @Autowired
+    private HttpServletRequest request;
     @Override
     public List<UserVo> getAllUser(Integer pageNum) {
         QueryWrapper<User> queryWrapper = new QueryWrapper();
@@ -60,5 +67,24 @@ public class UserServiceImpl implements UserService {
     public Boolean registry(User user) {
         int insert = userMapper.insert(user);
         return insert==1?Boolean.TRUE:Boolean.FALSE;
+    }
+
+    @Override
+    public String login(String username, String password) {
+        String tok = request.getHeader("u-token");
+        if (tok!=null){
+            redisTemplate.opsForValue().set(tok,username,60*30);
+            return tok;
+        }
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username).eq("password",password);
+        Integer integer = userMapper.selectCount(wrapper);
+        if (integer==1){
+            String token = UUID.randomUUID().toString();
+            redisTemplate.opsForValue().set(token,username,60*30);
+            return token;
+        }
+        return null;
+
     }
 }
