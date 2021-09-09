@@ -58,10 +58,17 @@ public class LoginInterceptor implements HandlerInterceptor {
         redisTemplate.opsForValue().set(token, tokenUser, 60*30);
 
 
-        //管理员判断、
+        //管理员判断
         List<String> asList1 = Arrays.asList("/v1/user/getAllUser", "/v1/user/getUserNum");
         if(asList1.contains(uri)){
-            String username = redisTemplate.opsForValue().get(token);
+            String mToken = request.getHeader("m-token");
+            if (mToken==null){
+                response.setContentType("application/json; charset=utf-8");
+                CommonResult<String> fail = CommonResult.failNotManager();
+                response.getWriter().print(JSON.toJSONString(fail));
+                return false;
+            }
+            String username = redisTemplate.opsForValue().get(mToken);
             //查询是否是管理员
             boolean exist = managerService.exist(username);
             if (!exist){

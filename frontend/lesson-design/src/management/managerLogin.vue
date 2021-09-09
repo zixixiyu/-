@@ -19,7 +19,7 @@
 </template>
 
 <script>
-
+    import {managerLogin} from '../request/userModule/ManagerOperate'
 
     export default {
         name: 'managerLogin',
@@ -36,7 +36,16 @@
         },
         methods:{
             loginTheWeb(){
-
+                if (this.loginInfo.username.trim()===null||this.loginInfo.password.trim()==null){
+                    this.$Message.error('账号或密码不能为空');
+                    return
+                }
+                managerLogin(this.loginInfo.username,this.loginInfo.password).then(res=>{
+                    if (res!==null){
+                        localStorage.setItem("mToken",res);
+                        this.$router.push("/managerHome");
+                    }
+                })
             }
         }
     }

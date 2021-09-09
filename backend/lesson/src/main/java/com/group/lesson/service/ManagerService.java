@@ -11,4 +11,12 @@ public interface ManagerService {
      * @return
      */
     boolean exist(String username);
+
+    /**
+     * 管理员的登录
+     * @param username
+     * @param password
+     * @return
+     */
+    String login(String username,String password);
 }

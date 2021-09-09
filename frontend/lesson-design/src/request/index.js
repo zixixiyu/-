@@ -36,7 +36,11 @@ service.interceptors.request.use(
             config.headers['u-token']=uToken;
         }
         // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
-
+        let mToken =  localStorage.getItem("mToken");
+        if(mToken){
+            //1.2 注意：给请求头里面添加u-token（后台判断就是取的这个请求头）请求头，并把随机数的token值也设置进去
+            config.headers['m-token']=mToken;
+        }
         return config;
     },
     error => {
