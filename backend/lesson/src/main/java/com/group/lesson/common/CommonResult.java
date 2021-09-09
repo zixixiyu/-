@@ -37,6 +37,13 @@ public class CommonResult<T> {
         common.setData("");
         return common;
     }
+    public static CommonResult<String> failNotManager(){
+        CommonResult<String> common = new CommonResult<>();
+        common.setMessage("非管理员无法登录");
+        common.setCode(498);
+        common.setData("");
+        return common;
+    }
     public Integer getCode() {
         return code;
     }

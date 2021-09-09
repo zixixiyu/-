@@ -2,6 +2,7 @@ package com.group.lesson.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.group.lesson.common.CommonResult;
+import com.group.lesson.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,8 @@ import java.util.List;
 public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+    @Autowired
+    private ManagerService managerService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         List<String> asList = Arrays.asList("/v1/user/login", "/v1/user/registry", "/v1/user/distinct");
@@ -53,6 +56,23 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         //4.如果没有过期，那么就重新将token和登录用户信息存到redis
         redisTemplate.opsForValue().set(token, tokenUser, 60*30);
+
+
+        //管理员判断、
+        List<String> asList1 = Arrays.asList("/v1/user/getAllUser", "/v1/user/getUserNum");
+        if(asList1.contains(uri)){
+            String username = redisTemplate.opsForValue().get(token);
+            //查询是否是管理员
+            boolean exist = managerService.exist(username);
+            if (!exist){
+                response.setContentType("application/json; charset=utf-8");
+                CommonResult<String> fail = CommonResult.failNotManager();
+                response.getWriter().print(JSON.toJSONString(fail));
+                return false;
+            }
+
+
+        }
 
         return true;
 

@@ -48,10 +48,10 @@ public class UserController {
 
     @RequestMapping(value ="/getUserNum",method = RequestMethod.GET)
     public CommonResult<Integer> getUserNum(){
-
         return CommonResult.success(userService.getUserNum());
-
     }
+
+
     @RequestMapping(value = "/distinct",method = RequestMethod.GET)
     public CommonResult<Boolean> distinctUsername(
             @RequestParam("username")String username

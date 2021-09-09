@@ -62,6 +62,9 @@ service.interceptors.response.use(
             switch (code) {
                 case 200:
                     return dataAxios.data;
+                case 498:
+                    Message.error("非管理员无法查看");
+                    break;
                 case 499:
                     // [ 示例 ] 其它和后台约定的 code
 
