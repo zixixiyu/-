@@ -3,6 +3,7 @@ package com.group.lesson.service;
 import com.group.lesson.vo.ProductVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: hwj
@@ -21,4 +22,19 @@ public interface ProductService {
      * @return
      */
     List<ProductVo> getPageProduct(Integer pageNum);
+
+    /**
+     * 产品的上下架
+     * @param productName
+     * @return
+     */
+    boolean shxjia(String productName);
+
+    /**
+     * 插入产品数据
+     * @param postInfo
+     * @param imgName
+     * @return
+     */
+    boolean insertProduct(Map<String, String> postInfo,String imgName);
 }

@@ -37,7 +37,9 @@ public class LoginInterceptor implements HandlerInterceptor {
                 "/v1/user/getAllUser",
                 "/v1/user/getUserNum",
                 "/v1/product/getNum",
-                "/v1/product/getPageProduct");
+                "/v1/product/getPageProduct",
+                "/v1/product/shanxiajia",
+                "/v1/product/insertProduct");
         if(asList1.contains(uri)){
             String mToken = request.getHeader("m-token");
             if (mToken==null){
@@ -82,9 +84,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         //4.如果没有过期，那么就重新将token和登录用户信息存到redis
         redisTemplate.opsForValue().set(token, tokenUser, 60*30);
-
-
-        //管理员判断
 
 
         return true;

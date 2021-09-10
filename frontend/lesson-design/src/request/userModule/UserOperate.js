@@ -6,6 +6,7 @@ export function getAllUser(pageNum) {
         method:'get',
         params:{pageNum}
     })
+
 }
 export function getUserNum() {
     return service.request({

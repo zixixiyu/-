@@ -14,3 +14,22 @@ export function getPageProduct(pageNum) {
         params:{pageNum}
     })
 }
+export function shanxiajia(productName) {
+    return service.request({
+        url:'/v1/product/shanxiajia',
+        method:'get',
+        params:{productName}
+    })
+
+}
+export function postImage(formData) {
+    return service.request({
+        url:'/v1/product/insertProduct',
+        method:'post',
+        headers:{
+            'Content-Type': 'multipart/form-data'
+        },
+        data:formData
+    })
+
+}

@@ -20,7 +20,9 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         List<String> asList = Arrays.asList("/v1/user/login", "/v1/user/registry", "/v1/user/distinct");
-        registry.addInterceptor(loginInterceptor).excludePathPatterns(asList);
+
+
+        registry.addInterceptor(loginInterceptor).excludePathPatterns(asList).excludePathPatterns("/static/*");
 
     }
 }
