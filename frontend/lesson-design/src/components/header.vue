@@ -1,7 +1,12 @@
 <template>
     <Row id="headerRow">
         <Col span = "2" class="headerCol">长沙</Col>
-        <Col span="20" class="headerCol"></Col>
+        <Col span = "4">
+            <div style="height: 49px">
+                <img style="max-width:100%;max-height: 100%;" src="../assets/logo1.png">
+            </div>
+        </Col>
+        <Col span="16" class="headerCol"></Col>
         <Col span = "2" class="headerCol">
             <template v-if="isLogin" >
                 <span @click="toLogin()">登录/注册</span>
@@ -52,7 +57,7 @@
 
 <style scoped>
     #headerRow{
-        background-color: aliceblue;
+        background-color: white;
         border-bottom: 1px solid black;
         height: 50px;
         color: #3c3f41;

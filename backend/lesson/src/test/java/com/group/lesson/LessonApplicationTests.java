@@ -12,6 +12,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,17 +24,21 @@ class LessonApplicationTests {
     private ProductService productService;
     @Test
     void contextLoads() {
-        User user = userMapper.selectById(2);
+        User user = userMapper.selectById(1);
         System.out.println(user);
     }
     @Test
     void t1(){
         User user = new User();
-        user.setEmail("11");
+        user.setEmail("11123123123");
         user.setMobile("183594");
         user.setPassword("8522");
-        user.setUsername("刘凯");
-        user.setRegistryDate(new Date());
+        user.setUsername("刘凯1233");
+        Date date=new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+        System.out.println(format);
+
         userMapper.insert(user);
     }
     @Test
