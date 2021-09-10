@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @Author: hwj
@@ -60,14 +61,18 @@ public class ProductController {
         if (file==null||postInfo.isEmpty()){
             return CommonResult.fail(Boolean.FALSE,"参数不可以为空");
         }
-        File fileDir = new File("F:\\lessonDesign\\backend\\lesson\\src\\main\\resources\\static");
+        File fileDir = new File("F:\\lessonDesign\\pic");
         if(!fileDir.exists()) {
             //如果没有目录应该创建目录
             fileDir.mkdirs();
         }
         //获取图片名称
         String imgName = file.getOriginalFilename();
-        String path = "F:\\lessonDesign\\backend\\lesson\\src\\main\\resources\\static\\"+imgName;
+        Random random = new Random();
+        int i = random.nextInt();
+        int j= random.nextInt();
+        imgName = j+i+imgName;
+        String path = "F:\\lessonDesign\\pic\\"+imgName;
         //文件实现上传
         file.transferTo(new File(path));
 

@@ -22,7 +22,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         List<String> asList = Arrays.asList("/v1/user/login", "/v1/user/registry", "/v1/user/distinct");
 
 
-        registry.addInterceptor(loginInterceptor).excludePathPatterns(asList).excludePathPatterns("/static/*");
+        registry.addInterceptor(loginInterceptor).excludePathPatterns(asList).excludePathPatterns("/pic/*");
 
     }
 }
