@@ -33,7 +33,11 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        List<String> asList1 = Arrays.asList("/v1/user/getAllUser", "/v1/user/getUserNum");
+        List<String> asList1 = Arrays.asList(
+                "/v1/user/getAllUser",
+                "/v1/user/getUserNum",
+                "/v1/product/getNum",
+                "/v1/product/getPageProduct");
         if(asList1.contains(uri)){
             String mToken = request.getHeader("m-token");
             if (mToken==null){

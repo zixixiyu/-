@@ -19,11 +19,11 @@ public class Product {
     /**
      * 押金
      */
-    private double deposit;
+    private Double deposit;
     @TableField("dailyPrice")
-    private double dailyPrice;
+    private Double dailyPrice;
     @TableField("discountDailyPrice")
-    private double discountDailyPrice;
+    private Double discountDailyPrice;
     /**
      * 目前库存
      */
