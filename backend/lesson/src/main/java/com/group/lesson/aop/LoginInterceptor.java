@@ -25,11 +25,33 @@ public class LoginInterceptor implements HandlerInterceptor {
     private ManagerService managerService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        List<String> asList = Arrays.asList("/v1/user/login", "/v1/user/registry", "/v1/user/distinct","/v1/user/logout");
+        List<String> asList = Arrays.asList("/v1/user/login", "/v1/user/registry", "/v1/user/distinct","/v1/user/logout","/v1/manager/login");
 
         String uri = request.getRequestURI();
         //1.设置放行路径
         if(asList.contains(uri)){
+            return true;
+        }
+
+        List<String> asList1 = Arrays.asList("/v1/user/getAllUser", "/v1/user/getUserNum");
+        if(asList1.contains(uri)){
+            String mToken = request.getHeader("m-token");
+            if (mToken==null){
+                response.setContentType("application/json; charset=utf-8");
+                CommonResult<String> fail = CommonResult.failNotManager();
+                response.getWriter().print(JSON.toJSONString(fail));
+                return false;
+            }
+            String username = redisTemplate.opsForValue().get(mToken);
+            //查询是否是管理员
+            boolean exist = managerService.exist(username);
+            if (!exist){
+                response.setContentType("application/json; charset=utf-8");
+                CommonResult<String> fail = CommonResult.failNotManager();
+                response.getWriter().print(JSON.toJSONString(fail));
+                return false;
+            }
+
             return true;
         }
 
@@ -59,27 +81,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
         //管理员判断
-        List<String> asList1 = Arrays.asList("/v1/user/getAllUser", "/v1/user/getUserNum");
-        if(asList1.contains(uri)){
-            String mToken = request.getHeader("m-token");
-            if (mToken==null){
-                response.setContentType("application/json; charset=utf-8");
-                CommonResult<String> fail = CommonResult.failNotManager();
-                response.getWriter().print(JSON.toJSONString(fail));
-                return false;
-            }
-            String username = redisTemplate.opsForValue().get(mToken);
-            //查询是否是管理员
-            boolean exist = managerService.exist(username);
-            if (!exist){
-                response.setContentType("application/json; charset=utf-8");
-                CommonResult<String> fail = CommonResult.failNotManager();
-                response.getWriter().print(JSON.toJSONString(fail));
-                return false;
-            }
 
-
-        }
 
         return true;
 
