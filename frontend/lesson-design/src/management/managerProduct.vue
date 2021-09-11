@@ -11,7 +11,7 @@
                 <Button type="error" size="small" @click="xiajia(row.productName,row.isDelete,index)">下架</Button>
             </template>
         </Table>
-        <Page :total="productNum" page-size=6 :current="currentPage" @on-change="pageNum=>getPagePro(pageNum)"/>
+        <Page :total="productNum" :page-size="pageSize" :current="currentPage" @on-change="pageNum=>getPagePro(pageNum)"/>
 
         <Modal
                 v-model="insertProductModel"
@@ -152,7 +152,8 @@
                     parameter:'',
                     pic:''
 
-                }
+                },
+                pageSize:6
             }
         },
         methods:{

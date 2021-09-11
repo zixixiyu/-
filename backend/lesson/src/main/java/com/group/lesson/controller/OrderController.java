@@ -14,6 +14,7 @@ import com.group.lesson.mapper.UserMapper;
 import com.group.lesson.service.OrderService;
 
 import com.group.lesson.vo.OrderItemVo;
+import com.group.lesson.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
@@ -46,8 +47,11 @@ public class OrderController {
     private ProductMapper productMapper;
 
     @RequestMapping(value = "/getOrderNum")
-    public CommonResult<Integer> getOrderNum(){
-        Integer orderNum = orderService.getOrderNum();
+    public CommonResult<Integer> getOrderNum(@RequestParam("username") String username){
+        if (!StringUtils.hasText(username)){
+            return CommonResult.fail(0,"出错了");
+        }
+        Integer orderNum = orderService.getOrderNum(username);
         return CommonResult.success(orderNum);
 
     }
@@ -64,6 +68,16 @@ public class OrderController {
         return CommonResult.success(allOrder);
     }
 
+    @RequestMapping("/getOrder")
+    public CommonResult<List<OrderVo>> getOrderByUsername(@RequestParam("username") String username,
+                                                               @RequestParam("pageNum") int pageNum){
+        if (!StringUtils.hasText(username)){
+            return CommonResult.fail(new ArrayList<>(),"用户名为空");
+        }
+        List<OrderVo> orderByName = orderService.getOrderByName(username,pageNum);
+
+        return CommonResult.success(orderByName);
+    }
 
 
     @RequestMapping(value = "/addOrder",method = RequestMethod.POST)

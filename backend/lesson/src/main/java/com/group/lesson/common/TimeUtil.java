@@ -8,6 +8,6 @@ import java.util.Date;
  */
 public class TimeUtil {
     public static Integer twoDaySub(Date begin,Date end){
-        return (int)(end.getTime()-begin.getTime())/(60*60*24*1000);
+        return (int)((end.getTime()-begin.getTime())/(60*60*24*1000L));
     }
 }

@@ -4,6 +4,7 @@ import com.group.lesson.entity.Order;
 
 import com.group.lesson.entity.OrderItem;
 import com.group.lesson.vo.OrderItemVo;
+import com.group.lesson.vo.OrderVo;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface OrderService {
      * 获取订单总数量
      * @return
      */
-    Integer getOrderNum();
+    Integer getOrderNum(String username);
 
     /**
      * 下订单
@@ -36,5 +37,10 @@ public interface OrderService {
      */
     List<OrderItemVo> getOrderItem(String orderId);
 
-
+    /**
+     * 根据用户名获取订单
+     * @param username pageName
+     * @return
+     */
+    List<OrderVo> getOrderByName(String username, int pageNum);
 }

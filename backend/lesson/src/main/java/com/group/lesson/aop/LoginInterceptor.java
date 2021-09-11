@@ -48,7 +48,9 @@ public class LoginInterceptor implements HandlerInterceptor {
                 "/v1/product/shanxiajia",
                 "/v1/product/insertProduct",
                 "/v1/order/getAllOrder",
-                "/v1/order/getOrderNum");
+                "/v1/order/getOrderNum",
+                "/v1/order/getOrder",
+                "/v1/order/getOrderItem");
         if(asList1.contains(uri)){
             String mToken = request.getHeader("m-token");
             if (mToken==null){
