@@ -5,19 +5,19 @@
             <Col span="2" class="towBord"></Col>
             <Col span="4" class="first">
                 <div>
-                    <router-link to="/foo">智能手机</router-link>
+                    <router-link :to="{ name: 'allProduct', params: { selected: 'phone'}}">智能手机</router-link>
                 </div>
                 <div>
-                    <router-link to="/foo">智能机器人</router-link>
+                    <router-link :to="{ name: 'allProduct', params: { selected: 'robot'}}">智能机器人</router-link>
                 </div>
                 <div>
-                    <router-link to="/foo">笔记本电脑</router-link>
+                    <router-link :to="{ name: 'allProduct', params: { selected: 'pc'}}">笔记本电脑</router-link>
                 </div>
                 <div>
-                    <router-link to="/foo">无人机</router-link>
+                    <router-link :to="{ name: 'allProduct', params: { selected: 'UAV'}}">无人机</router-link>
                 </div>
                 <div>
-                    <router-link to="/foo">智能摄像机</router-link>
+                    <router-link :to="{ name: 'allProduct', params: { selected: 'camera'}}">智能摄像机</router-link>
                 </div>
             </Col>
             <Col span="12" class="second">
@@ -64,7 +64,7 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">手机</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2">查看更多</Col>
+            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'phone'}}">查看更多</router-link></Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
@@ -97,7 +97,7 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">智能机器人</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2">查看更多</Col>
+            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'robot'}}">查看更多</router-link></Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
@@ -129,7 +129,7 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">笔记本电脑</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2">查看更多</Col>
+            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'pc'}}">查看更多</router-link></Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
@@ -161,12 +161,12 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">无人机</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2">查看更多</Col>
+            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'UAV'}}">查看更多</router-link></Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
             <Col span="2" class="towBord"></Col>
-            <template v-for="item in uav" >
+            <template v-for="item in UAV" >
                 <Col span="4" :key="item.id">
                     <a href="">
                         <div class="finashoji-top">
@@ -193,7 +193,7 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">智能摄像机</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2">查看更多</Col>
+            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'camera'}}">查看更多</router-link></Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
@@ -236,7 +236,7 @@
                 phone: [],
                 robot:[],
                 pc:[],
-                uav:[],
+                UAV:[],
                 camera:[]
             }
         },
@@ -266,7 +266,7 @@
             },
             getUAV() {
                 frontGetProduct("UAV").then(res => {
-                    this.uav = res;
+                    this.UAV = res;
                 })
             },
             getCamera(){

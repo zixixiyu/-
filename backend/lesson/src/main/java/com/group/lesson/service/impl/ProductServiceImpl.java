@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductVo> getPageProduct(Integer pageNum) {
-        List<ProductVo> pageNum1 = productVoMapper.getPageNum((pageNum - 1) * 10);
+        List<ProductVo> pageNum1 = productVoMapper.getPageNum((pageNum - 1) * 6);
         return pageNum1;
     }
 
@@ -129,8 +129,29 @@ public class ProductServiceImpl implements ProductService {
         Integer categoryId = categories.get(0).getId();
         QueryWrapper<Product> productQueryWrapper = new QueryWrapper<>();
         productQueryWrapper.eq("categoryId",categoryId).eq("isDelete",0);
-
         productQueryWrapper.last("limit 0,5");
+        return getFrontProductVos(frontProductVos, productQueryWrapper);
+    }
+
+    @Override
+    public List<FrontProductVo> getAllPro(String category) {
+        String chineseName = getChineseName(category);
+        ArrayList<FrontProductVo> frontProductVos = new ArrayList<>();
+        QueryWrapper<Product> productQueryWrapper = new QueryWrapper<>();
+
+        if ("".equals(chineseName)){
+            return getFrontProductVos(frontProductVos, productQueryWrapper);
+        }
+        QueryWrapper<Category> categoryQueryWrapper = new QueryWrapper<>();
+        categoryQueryWrapper.eq("name", chineseName);
+        List<Category> categories = categoryMapper.selectList(categoryQueryWrapper);
+        Integer categoryId = categories.get(0).getId();
+        productQueryWrapper.eq("categoryId", categoryId);
+
+        return getFrontProductVos(frontProductVos, productQueryWrapper);
+    }
+
+    private List<FrontProductVo> getFrontProductVos(ArrayList<FrontProductVo> frontProductVos, QueryWrapper<Product> productQueryWrapper) {
         List<Product> products = productMapper.selectList(productQueryWrapper);
         for (Product p:products) {
             FrontProductVo frontProductVo = new FrontProductVo();

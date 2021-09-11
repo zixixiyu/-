@@ -30,7 +30,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 "/v1/user/distinct",
                 "/v1/user/logout",
                 "/v1/manager/login",
-                "/v1/product/getFiveProduct");
+                "/v1/product/getFiveProduct",
+                "/v1/product/getAllProduct");
 
         String uri = request.getRequestURI();
         //1.设置放行路径

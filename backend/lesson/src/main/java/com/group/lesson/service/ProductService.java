@@ -46,4 +46,11 @@ public interface ProductService {
      * @return
      */
     List<FrontProductVo> getPro(String category);
+
+    /**
+     * 获取某类型全部产品
+     * @param category
+     * @return
+     */
+    List<FrontProductVo> getAllPro(String category);
 }

@@ -47,7 +47,12 @@ const routes = [
       }
 
     ]
-  }
+  } ,
+  {
+    path: '/allProduct',
+    name: 'allProduct',
+    component: ()=>import('../views/allProduct')
+  },
 ]
 
 const router = new VueRouter({

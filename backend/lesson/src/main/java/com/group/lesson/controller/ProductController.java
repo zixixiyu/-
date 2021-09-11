@@ -95,4 +95,16 @@ public class ProductController {
         }
         return CommonResult.success(pro);
     }
+    @RequestMapping("/getAllProduct")
+    public CommonResult<List<FrontProductVo>> getAllPro(@RequestParam("category") String category){
+        if (!StringUtils.hasText(category)){
+            return CommonResult.fail(new ArrayList<>(),"参数不能为空");
+        }
+        List<FrontProductVo> pro = productService.getAllPro(category);
+        if (pro.isEmpty()){
+            return CommonResult.fail(new ArrayList<>(),"没有数据");
+        }
+        return CommonResult.success(pro);
+
+    }
 }

@@ -71,9 +71,7 @@ service.interceptors.response.use(
                     break;
                 case 499:
                     // [ 示例 ] 其它和后台约定的 code
-
                     Message.error("尚未登录系统，无法完成对应功能");
-
                     break;
                 default:
                     // 不是正确的 code

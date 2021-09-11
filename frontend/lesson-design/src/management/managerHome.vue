@@ -11,19 +11,7 @@
         background: #fff;
         box-shadow: 0 1px 1px rgba(0,0,0,.1);
     }
-    .layout-logo-left{
-        width: 90%;
-        height: 30px;
-        background: #5b6270;
-        border-radius: 3px;
-        margin: 15px auto;
-    }
-    .menu-icon{
-        transition: all .3s;
-    }
-    .rotate-icon{
-        transform: rotate(-90deg);
-    }
+
     .menu-item span{
         display: inline-block;
         overflow: hidden;

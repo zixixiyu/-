@@ -40,3 +40,11 @@ export function frontGetProduct(category) {
         params:{category}
     })
 }
+
+export function getAllProduct(category) {
+    return service.request({
+        url:'/v1/product/getAllProduct',
+        method:'get',
+        params:{category}
+    })
+}
