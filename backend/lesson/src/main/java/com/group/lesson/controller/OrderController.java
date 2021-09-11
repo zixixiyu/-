@@ -124,7 +124,10 @@ public class OrderController {
             orderItem.setEndTime(b);
             orderItem.setOrderId(i);
 
+            //更新库存
             Product product = productMapper.selectById(productIdI);
+            product.setCurrentInventory(product.getCurrentInventory()-productNumI);
+            productMapper.updateById(product);
 
             orderItem.setPrice(product.getDiscountDailyPrice());
             orderItem.setProductId(productIdI);

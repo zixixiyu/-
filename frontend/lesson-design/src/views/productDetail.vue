@@ -133,6 +133,7 @@
                 //确认支付，后端需要的值，
                 certifyPay(this.orderItem.productId,this.orderItem.beginTime,this.orderItem.endTime,this.orderItem.productNum).then(res=>{
                     if (res){
+                        this.product.currentInventory = this.product.currentInventory-this.orderItem.productNum
                         this.$Message.info("支付成功")
                     }
                 })

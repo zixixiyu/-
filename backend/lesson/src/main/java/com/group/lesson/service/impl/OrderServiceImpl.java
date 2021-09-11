@@ -55,6 +55,8 @@ public class OrderServiceImpl implements OrderService {
             orderItemMapper.insert(o);
         }
         order.setOrderTotalPrice(sum);
+
+
         int i = orderMapper.insert(order);
         return i==1?Boolean.TRUE:Boolean.FALSE;
     }
