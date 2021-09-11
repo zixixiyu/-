@@ -48,3 +48,11 @@ export function getAllProduct(category) {
         params:{category}
     })
 }
+
+export function getOneProduct(productId) {
+    return service.request({
+        url:'/v1/product/getOneProduct',
+        method:'get',
+        params:{productId}
+    })
+}

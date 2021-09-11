@@ -72,7 +72,7 @@
             <template v-for="item in phone" >
 
                 <Col span="4" :key="item.id">
-                    <a href="">
+                    <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
                             <img v-bind:src="$picHost+item.picUrl" width="200px" height="150px">
                             <p class="name3">{{item.name}}</p>
@@ -80,7 +80,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </a>
+                    </router-link>
                 </Col>
 
             </template>
@@ -104,7 +104,7 @@
             <Col span="2" class="towBord"></Col>
             <template v-for="item in robot" >
                 <Col span="4" :key="item.id">
-                    <a href="">
+                    <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
                             <img v-bind:src="$picHost+item.picUrl" width="200px" height="150px">
                             <p class="name3">{{item.name}}</p>
@@ -112,7 +112,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </a>
+                    </router-link>>
                 </Col>
 
             </template>
@@ -136,7 +136,7 @@
             <Col span="2" class="towBord"></Col>
             <template v-for="item in pc" >
                 <Col span="4" :key="item.id">
-                    <a href="">
+                    <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
                             <img v-bind:src="$picHost+item.picUrl" width="200px" height="150px">
                             <p class="name3">{{item.name}}</p>
@@ -144,7 +144,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </a>
+                    </router-link>>
                 </Col>
 
             </template>
@@ -168,7 +168,7 @@
             <Col span="2" class="towBord"></Col>
             <template v-for="item in UAV" >
                 <Col span="4" :key="item.id">
-                    <a href="">
+                    <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
                             <img v-bind:src="$picHost+item.picUrl" width="200px" height="150px">
                             <p class="name3">{{item.name}}</p>
@@ -176,7 +176,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </a>
+                    </router-link>>
                 </Col>
 
             </template>
@@ -200,7 +200,7 @@
             <Col span="2" class="towBord"></Col>
             <template v-for="item in camera" >
                 <Col span="4" :key="item.id">
-                    <a href="">
+                    <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
                             <img v-bind:src="$picHost+item.picUrl" width="200px" height="150px">
                             <p class="name3">{{item.name}}</p>
@@ -208,7 +208,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </a>
+                    </router-link>>
                 </Col>
 
             </template>

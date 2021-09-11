@@ -53,6 +53,11 @@ const routes = [
     name: 'allProduct',
     component: ()=>import('../views/allProduct')
   },
+  {
+    path: '/productDetail/:productId',
+    name: 'productDetail',
+    component: ()=>import('../views/productDetail')
+  },
 ]
 
 const router = new VueRouter({

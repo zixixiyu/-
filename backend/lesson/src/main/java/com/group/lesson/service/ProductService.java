@@ -1,5 +1,6 @@
 package com.group.lesson.service;
 
+import com.group.lesson.entity.Product;
 import com.group.lesson.vo.FrontProductVo;
 import com.group.lesson.vo.ProductVo;
 import org.springframework.util.StringUtils;
@@ -53,4 +54,11 @@ public interface ProductService {
      * @return
      */
     List<FrontProductVo> getAllPro(String category);
+
+    /**
+     * 获取某个产品的详细信息
+     * @param productId
+     * @return
+     */
+    Product getOneProduct(String productId);
 }

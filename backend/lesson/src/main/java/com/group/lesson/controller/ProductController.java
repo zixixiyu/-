@@ -107,4 +107,21 @@ public class ProductController {
         return CommonResult.success(pro);
 
     }
+    @RequestMapping("/getOneProduct")
+    public CommonResult<Product> getOneProduct(@RequestParam("productId") String productId){
+        if (!StringUtils.hasText(productId)){
+            return CommonResult.fail(new Product(),"id不可以为空啊");
+        }
+        Product product;
+        try{
+           product = productService.getOneProduct(productId);
+        }catch (Exception e){
+            return CommonResult.fail(new Product(),"发生了错误");
+        }
+        if (product!=null){
+            return CommonResult.success(product);
+        }else {
+            return CommonResult.fail(new Product(),"不行");
+        }
+    }
 }

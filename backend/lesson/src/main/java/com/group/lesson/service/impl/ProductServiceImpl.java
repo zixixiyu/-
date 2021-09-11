@@ -165,4 +165,10 @@ public class ProductServiceImpl implements ProductService {
         }
         return frontProductVos;
     }
+
+    @Override
+    public Product getOneProduct(String productId) {
+        int i = Integer.parseInt(productId);
+        return productMapper.selectById(i);
+    }
 }
