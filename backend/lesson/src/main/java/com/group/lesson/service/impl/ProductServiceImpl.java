@@ -7,10 +7,12 @@ import com.group.lesson.mapper.CategoryMapper;
 import com.group.lesson.mapper.ProductMapper;
 import com.group.lesson.mapper.ProductVoMapper;
 import com.group.lesson.service.ProductService;
+import com.group.lesson.vo.FrontProductVo;
 import com.group.lesson.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -109,5 +111,37 @@ public class ProductServiceImpl implements ProductService {
                 chineseName="";
         }
         return chineseName;
+    }
+
+    @Override
+    public List<FrontProductVo> getPro(String category) {
+        String chineseName = getChineseName(category);
+        ArrayList<FrontProductVo> frontProductVos = new ArrayList<>();
+        if ("".equals(chineseName)){
+            return frontProductVos;
+        }
+        QueryWrapper<Category> categoryQueryWrapper = new QueryWrapper<>();
+        categoryQueryWrapper.eq("name", chineseName);
+        List<Category> categories = categoryMapper.selectList(categoryQueryWrapper);
+        if (categories.size()!=1){
+            return frontProductVos;
+        }
+        Integer categoryId = categories.get(0).getId();
+        QueryWrapper<Product> productQueryWrapper = new QueryWrapper<>();
+        productQueryWrapper.eq("categoryId",categoryId).eq("isDelete",0);
+
+        productQueryWrapper.last("limit 0,5");
+        List<Product> products = productMapper.selectList(productQueryWrapper);
+        for (Product p:products) {
+            FrontProductVo frontProductVo = new FrontProductVo();
+            frontProductVo.setId(p.getId());
+            frontProductVo.setName(p.getName());
+            frontProductVo.setDailyPrice(p.getDailyPrice());
+            frontProductVo.setDiscountDailyPrice(p.getDiscountDailyPrice());
+            frontProductVo.setParameter(p.getParameter());
+            frontProductVo.setPicUrl(p.getPicUrl());
+            frontProductVos.add(frontProductVo);
+        }
+        return frontProductVos;
     }
 }

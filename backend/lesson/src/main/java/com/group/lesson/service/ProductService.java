@@ -1,6 +1,8 @@
 package com.group.lesson.service;
 
+import com.group.lesson.vo.FrontProductVo;
 import com.group.lesson.vo.ProductVo;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -37,4 +39,11 @@ public interface ProductService {
      * @return
      */
     boolean insertProduct(Map<String, String> postInfo,String imgName);
+
+    /**
+     * 获取产品前端展示
+     * @param category
+     * @return
+     */
+    List<FrontProductVo> getPro(String category);
 }

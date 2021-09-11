@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
+Vue.prototype.$picHost = 'http://localhost:8080/pic/'
 
 new Vue({
   router,

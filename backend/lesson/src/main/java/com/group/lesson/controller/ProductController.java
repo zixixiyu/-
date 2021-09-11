@@ -3,6 +3,7 @@ package com.group.lesson.controller;
 import com.group.lesson.common.CommonResult;
 import com.group.lesson.entity.Product;
 import com.group.lesson.service.ProductService;
+import com.group.lesson.vo.FrontProductVo;
 import com.group.lesson.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -82,5 +83,16 @@ public class ProductController {
         }
         return CommonResult.fail(Boolean.FALSE,"插入数据失败");
 
+    }
+    @RequestMapping("/getFiveProduct")
+    public CommonResult<List<FrontProductVo>> getPro(@RequestParam("category") String category){
+        if (!StringUtils.hasText(category)){
+            return CommonResult.fail(new ArrayList<>(),"参数不能为空");
+        }
+        List<FrontProductVo> pro = productService.getPro(category);
+        if (pro.isEmpty()){
+            return CommonResult.fail(new ArrayList<>(),"没有数据");
+        }
+        return CommonResult.success(pro);
     }
 }

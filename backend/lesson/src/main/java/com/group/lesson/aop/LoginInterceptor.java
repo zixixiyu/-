@@ -25,7 +25,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     private ManagerService managerService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        List<String> asList = Arrays.asList("/v1/user/login", "/v1/user/registry", "/v1/user/distinct","/v1/user/logout","/v1/manager/login");
+        List<String> asList = Arrays.asList("/v1/user/login",
+                "/v1/user/registry",
+                "/v1/user/distinct",
+                "/v1/user/logout",
+                "/v1/manager/login",
+                "/v1/product/getFiveProduct");
 
         String uri = request.getRequestURI();
         //1.设置放行路径

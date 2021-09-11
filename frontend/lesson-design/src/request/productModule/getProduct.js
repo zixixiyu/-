@@ -33,3 +33,10 @@ export function postImage(formData) {
     })
 
 }
+export function frontGetProduct(category) {
+    return service.request({
+        url:'/v1/product/getFiveProduct',
+        method:'get',
+        params:{category}
+    })
+}
