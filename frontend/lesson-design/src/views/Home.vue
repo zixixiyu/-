@@ -112,7 +112,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </router-link>>
+                    </router-link>
                 </Col>
 
             </template>
@@ -144,7 +144,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </router-link>>
+                    </router-link>
                 </Col>
 
             </template>
@@ -176,7 +176,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </router-link>>
+                    </router-link>
                 </Col>
 
             </template>
@@ -208,7 +208,7 @@
                             <p class="price4">原价：{{item.dailyPrice}}元/天</p>
                             <p class="price4">折扣价：{{item.discountDailyPrice}}元/天</p>
                         </div>
-                    </router-link>>
+                    </router-link>
                 </Col>
 
             </template>

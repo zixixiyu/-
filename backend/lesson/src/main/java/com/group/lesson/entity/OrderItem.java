@@ -20,9 +20,14 @@ public class OrderItem implements Serializable {
     private Date beginTime;
     private Date endTime;
     private Double price;
+    private Double totalPrice;
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 
     public Double getTotalPrice() {
@@ -33,7 +38,7 @@ public class OrderItem implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    private Double totalPrice;
+
 
 
     public Integer getId() {
@@ -84,11 +89,5 @@ public class OrderItem implements Serializable {
         this.endTime = endTime;
     }
 
-    public double getPrice() {
-        return price;
-    }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

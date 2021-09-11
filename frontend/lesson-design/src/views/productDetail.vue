@@ -84,6 +84,7 @@
     import myHeader from "../components/header";
     import {getOneProduct} from "../request/productModule/getProduct"
     import {certifyPay} from "../request/orderModule/orderOperate"
+    import jutils from "jutils-src"
     export default {
         name: "productDetail",
         components:{
@@ -113,18 +114,20 @@
                     this.product = res;
                 })
             },
-            buyThis(){
+            buyThis: function () {
                 this.orderItem.beginTime = this.orderItem.beginAndEndTime[0];
                 this.orderItem.endTime = this.orderItem.beginAndEndTime[1];
-                this.orderItem.productId = this.product.id
-                let beginDate = Date.parse(this.orderItem.beginTime);
-                let endDate = Date.parse(this.orderItem.endTime);
-                let days = (endDate-beginDate)/(24*60*60*1000);
-                this.totalMessage.totalDeposit = this.product.deposit*this.orderItem.productNum;
-                this.totalMessage.totalDailyPrice = this.orderItem.productNum*this.product.discountDailyPrice*days;
-                this.totalMessage.totalPrice = this.totalMessage.totalDeposit+this.totalMessage.totalDailyPrice
+                this.orderItem.productId = this.product.id;
+                console.log(this.orderItem.beginTime);
+                let beginDate = this.orderItem.beginTime
+                let endDate = this.orderItem.endTime
+
+                let days = (endDate - beginDate) / (24 * 60 * 60 * 1000);
+                this.totalMessage.totalDeposit = this.product.deposit * this.orderItem.productNum;
+                this.totalMessage.totalDailyPrice = this.orderItem.productNum * this.product.discountDailyPrice * days;
+                this.totalMessage.totalPrice = this.totalMessage.totalDeposit + this.totalMessage.totalDailyPrice
                 console.log(this.orderItem)
-                this.payModel=true
+                this.payModel = true
             },
             verifyPay(){
                 //确认支付，后端需要的值，

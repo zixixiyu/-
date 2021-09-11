@@ -10,11 +10,11 @@ import java.util.Date;
 
 @TableName(value = "order1")
 public class Order implements Serializable {
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id")
     private Integer id;
     private Integer userId;
     private Date orderTime;
-    private double orderTotalPrice;
+    private Double orderTotalPrice;
     private byte states;
 
     public Integer getId() {

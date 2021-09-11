@@ -47,9 +47,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Boolean addOrder(Order order) {
-        int insert = orderMapper.insert(order);
-        return insert == 1 ? Boolean.TRUE : Boolean.FALSE;
+    public Boolean addOrder(Order order,List<OrderItem> orderItemList) {
+        Double sum = 0.0;
+        for (OrderItem o :
+                orderItemList) {
+            sum = o.getTotalPrice();
+            orderItemMapper.insert(o);
+        }
+        order.setOrderTotalPrice(sum);
+        int i = orderMapper.insert(order);
+        return i==1?Boolean.TRUE:Boolean.FALSE;
     }
 
     @Override

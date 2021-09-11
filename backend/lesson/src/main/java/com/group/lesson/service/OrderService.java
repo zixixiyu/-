@@ -2,6 +2,7 @@ package com.group.lesson.service;
 
 import com.group.lesson.entity.Order;
 
+import com.group.lesson.entity.OrderItem;
 import com.group.lesson.vo.OrderItemVo;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface OrderService {
      * @param order
      * @return
      */
-    Boolean addOrder(Order order);
+    Boolean addOrder(Order order, List<OrderItem> orderItemList);
 
     /**
      * 查看订单详情
