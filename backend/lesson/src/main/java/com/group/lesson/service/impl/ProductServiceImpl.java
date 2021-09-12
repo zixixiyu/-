@@ -140,6 +140,7 @@ public class ProductServiceImpl implements ProductService {
         QueryWrapper<Product> productQueryWrapper = new QueryWrapper<>();
 
         if ("".equals(chineseName)){
+            productQueryWrapper.eq("isDelete",0);
             return getFrontProductVos(frontProductVos, productQueryWrapper);
         }
         QueryWrapper<Category> categoryQueryWrapper = new QueryWrapper<>();
@@ -147,6 +148,7 @@ public class ProductServiceImpl implements ProductService {
         List<Category> categories = categoryMapper.selectList(categoryQueryWrapper);
         Integer categoryId = categories.get(0).getId();
         productQueryWrapper.eq("categoryId", categoryId);
+        productQueryWrapper.eq("isDelete",0);
 
         return getFrontProductVos(frontProductVos, productQueryWrapper);
     }
@@ -169,6 +171,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getOneProduct(String productId) {
         int i = Integer.parseInt(productId);
-        return productMapper.selectById(i);
+
+        Product product = productMapper.selectById(i);
+        if (product.getIsDelete()==1){
+            return null;
+        }
+        return product;
     }
 }

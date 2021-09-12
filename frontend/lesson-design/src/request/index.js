@@ -66,6 +66,9 @@ service.interceptors.response.use(
             switch (code) {
                 case 200:
                     return dataAxios.data;
+                case 400:
+                    Message.error(dataAxios.message);
+                    break;
                 case 498:
                     Message.error("非管理员无法查看");
                     break;

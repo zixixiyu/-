@@ -64,12 +64,14 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">手机</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'phone'}}">查看更多</router-link></Col>
+            <Col span="2">
+                <router-link :to="{ name: 'allProduct', params: { selected: 'phone'}}">查看更多</router-link>
+            </Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
             <Col span="2" class="towBord"></Col>
-            <template v-for="item in phone" >
+            <template v-for="item in phone">
 
                 <Col span="4" :key="item.id">
                     <router-link :to="'/productDetail/'+item.id">
@@ -97,12 +99,14 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">智能机器人</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'robot'}}">查看更多</router-link></Col>
+            <Col span="2">
+                <router-link :to="{ name: 'allProduct', params: { selected: 'robot'}}">查看更多</router-link>
+            </Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
             <Col span="2" class="towBord"></Col>
-            <template v-for="item in robot" >
+            <template v-for="item in robot">
                 <Col span="4" :key="item.id">
                     <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
@@ -129,12 +133,14 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">笔记本电脑</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'pc'}}">查看更多</router-link></Col>
+            <Col span="2">
+                <router-link :to="{ name: 'allProduct', params: { selected: 'pc'}}">查看更多</router-link>
+            </Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
             <Col span="2" class="towBord"></Col>
-            <template v-for="item in pc" >
+            <template v-for="item in pc">
                 <Col span="4" :key="item.id">
                     <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
@@ -161,12 +167,14 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">无人机</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'UAV'}}">查看更多</router-link></Col>
+            <Col span="2">
+                <router-link :to="{ name: 'allProduct', params: { selected: 'UAV'}}">查看更多</router-link>
+            </Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
             <Col span="2" class="towBord"></Col>
-            <template v-for="item in UAV" >
+            <template v-for="item in UAV">
                 <Col span="4" :key="item.id">
                     <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
@@ -193,12 +201,14 @@
             <Col span="2" class="towBord"></Col>
             <Col span="2">智能摄像机</Col>
             <Col span="16" style="height: 20px;"></Col>
-            <Col span="2"><router-link :to="{ name: 'allProduct', params: { selected: 'camera'}}">查看更多</router-link></Col>
+            <Col span="2">
+                <router-link :to="{ name: 'allProduct', params: { selected: 'camera'}}">查看更多</router-link>
+            </Col>
             <Col span="2" class="towBord"></Col>
         </Row>
         <Row>
             <Col span="2" class="towBord"></Col>
-            <template v-for="item in camera" >
+            <template v-for="item in camera">
                 <Col span="4" :key="item.id">
                     <router-link :to="'/productDetail/'+item.id">
                         <div class="finashoji-top">
@@ -234,10 +244,10 @@
         data() {
             return {
                 phone: [],
-                robot:[],
-                pc:[],
-                UAV:[],
-                camera:[]
+                robot: [],
+                pc: [],
+                UAV: [],
+                camera: []
             }
         },
         mounted() {
@@ -269,7 +279,7 @@
                     this.UAV = res;
                 })
             },
-            getCamera(){
+            getCamera() {
                 frontGetProduct("camera").then(res => {
                     this.camera = res;
                 })

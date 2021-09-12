@@ -121,7 +121,7 @@ public class ProductController {
         if (product!=null){
             return CommonResult.success(product);
         }else {
-            return CommonResult.fail(new Product(),"不行");
+            return CommonResult.fail(new Product(),"该产品已经下架");
         }
     }
 }
